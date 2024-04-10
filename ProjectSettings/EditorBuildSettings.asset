@@ -4,5 +4,35 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Game_Over_Manager_2.0/Over_Manger_2_Scenes/Dlc_0_StartUpScene[AR].unity
+    guid: ce3525525eb85294aa74bf1036243bf0
+  - enabled: 1
+    path: Assets/Game_Over_Manager_2.0/Over_Manger_2_Scenes/Dlc_1_Map[AR].unity
+    guid: c3fa4ffd99279094e9be232fe483fd70
+  - enabled: 1
+    path: Assets/Game_Over_Manager_2.0/Over_Manger_2_Scenes/Dlc_2_Level[AR] 0.unity
+    guid: 28489db1dedd81b47ac71498706e37a6
+  - enabled: 1
+    path: Assets/Game_Over_Manager_2.0/Over_Manger_2_Scenes/Dlc_2_Level[AR] 1.unity
+    guid: 859095943bb347446a0fddb533231930
+  - enabled: 1
+    path: Assets/Game_Over_Manager_2.0/Over_Manger_2_Scenes/Dlc_2_Level[AR] 2.unity
+    guid: b3b207abdc715ea4495eb94914b65002
+  - enabled: 1
+    path: Assets/Game_Over_Manager_2.0/Over_Manger_2_Scenes/Dlc_2_Level[AR] 3.unity
+    guid: 6bb8057d14dd4064997461f36b2e94cc
+  - enabled: 1
+    path: Assets/Game_Over_Manager_2.0/Over_Manger_2_Scenes/Dlc_2_Level[AR] 4.unity
+    guid: 44d29d634a71e1546b50a08c9b885371
+  - enabled: 1
+    path: Assets/Game_Over_Manager_2.0/Over_Manger_2_Scenes/Dlc_2_Level[AR] 5.unity
+    guid: 508ef4ef92652814da65a8224199c18a
+  - enabled: 1
+    path: Assets/Game_Over_Manager_2.0/Over_Manger_2_Scenes/Dlc_2_Level[AR] 6.unity
+    guid: 8b5bd5446e080054f8f031fd4640be00
+  - enabled: 1
+    path: Assets/Game_Over_Manager_2.0/Over_Manger_2_Scenes/Dlc_3_Infinte_Mode[AR].unity
+    guid: 135a07b31266a244e806ccfef39dcf45
   m_configObjects: {}
