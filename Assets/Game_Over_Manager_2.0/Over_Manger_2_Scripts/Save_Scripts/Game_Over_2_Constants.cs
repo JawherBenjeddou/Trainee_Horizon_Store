@@ -2,6 +2,9 @@
 
 public class Game_Over_2_Constants
 {
+    //added by (joe)
+    public static string GYRO_STATE = "gyroEnabled";
+
     //Game Bihiavior
     public static string GAME_REFRENCE = "gameReference";
 
