@@ -11,6 +11,11 @@ namespace com.horizon.store
     {
         private List<CollectibleItem> collectedItems;
 
+        void Start()
+        {
+            collectedItems = new List<CollectibleItem>();
+        }
+
         public void CollectItem(CollectibleItem item)
         {
             AddToInventory(item);

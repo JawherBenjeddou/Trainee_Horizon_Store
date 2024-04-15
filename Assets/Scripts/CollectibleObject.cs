@@ -28,12 +28,21 @@ namespace com.horizon.store
                     Ray ray = Camera.main.ScreenPointToRay(touch.position);
                     RaycastHit hit;
 
+                    // Perform the raycast and visualize it with a debug ray
                     if (Physics.Raycast(ray, out hit))
                     {
+                        // Draw a debug ray from the touch position to the hit point
+                        Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 1f);
+
                         if (hit.collider.gameObject == gameObject)
                         {
                             OnInteract();
                         }
+                    }
+                    else
+                    {
+                        // Draw a debug ray from the touch position in the direction of the ray
+                        Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 1f);
                     }
                 }
             }
