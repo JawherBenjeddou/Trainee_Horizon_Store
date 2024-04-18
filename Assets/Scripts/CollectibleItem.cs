@@ -20,7 +20,7 @@ namespace com.horizon.store
     {
         public string m_ItemName;
         public CollectibleItemType m_itemType;
-        //public Sprite m_itemIcon; // Icon for the collectible item (for UI)
+        public Sprite m_itemIcon; // Icon for the collectible item (for UI)
         public int m_price;
     }
 }
