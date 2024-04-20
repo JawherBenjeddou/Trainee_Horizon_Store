@@ -22,5 +22,6 @@ namespace com.horizon.store
         public CollectibleItemType m_itemType;
         public Sprite m_itemIcon; // Icon for the collectible item (for UI)
         public int m_price;
+        
     }
 }
