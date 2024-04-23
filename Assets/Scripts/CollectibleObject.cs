@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 
@@ -56,7 +53,7 @@ namespace com.horizon.store
             FindObjectOfType<InventoryManager>().CollectItem(m_CollectibleItem);
 
             // Destroy the collectible object after it's collected
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
    

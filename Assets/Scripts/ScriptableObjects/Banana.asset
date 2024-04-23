@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 838f41ed33930304f8ef10be365c4cc1, type: 3}
-  m_Name: Apple
+  m_Name: Banana
   m_EditorClassIdentifier: 
-  m_ItemName: "\u062A\u0641\u0627\u062D\u0627\u062A"
-  m_itemType: 0
-  m_itemIcon: {fileID: 21300000, guid: 61cf04cfc7993554aa29b976a33b0c9f, type: 3}
-  m_price: 50
+  m_ItemName: banana
+  m_itemType: 1
+  m_itemIcon: {fileID: 21300000, guid: a96b6cd474f09364aaac346d17b55512, type: 3}
+  m_price: 100
