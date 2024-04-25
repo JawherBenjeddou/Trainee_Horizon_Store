@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UPersian.Components;
+using UnityEngine.PlayerLoop;
+
 
 namespace com.horizon.store
 {
@@ -10,10 +12,10 @@ namespace com.horizon.store
     {
         public List<CollectibleItem> m_TargetItems;
 
-        private List<CollectibleItem> m_CollectedItems;
+        private List<CollectibleItem> m_PickedItems;
 
 
-        private List<GameObject> m_InstantiatedGrocery;
+        private List<GameObject> m_InstantiatedGroceryUI;
 
         [SerializeField] private Transform m_CanvasForGrocery;
         [SerializeField] private GameObject m_GroceryUIPrefab;
@@ -21,23 +23,32 @@ namespace com.horizon.store
 
         void Start()
         {
-
-            m_CollectedItems = new List<CollectibleItem>();
-            m_InstantiatedGrocery = new List<GameObject>();
+            m_PickedItems = new List<CollectibleItem>();
+            m_InstantiatedGroceryUI = new List<GameObject>();
             InstantiateGroceryUI();
         }
 
         public void CollectItem(CollectibleItem item)
         {
+            // Check if the collected item is not in the target list
+            if (!m_TargetItems.Contains(item))
+            {
+                Debug.Log("Item '" + item.m_ItemName + "' is not in the target list.");
+                ScreenShake.Instance.Shake();
+                return;
+            }
+
             AddToInventory(item);
+            UpdateUI(item);
 
             // Check if all items are collected
             CheckCollectedItems();
         }
 
+
         private void AddToInventory(CollectibleItem itemType)
         {
-            m_CollectedItems.Add(itemType);
+            m_PickedItems.Add(itemType);
             Debug.Log(itemType.name + " added to inventory.");
         }
 
@@ -45,7 +56,7 @@ namespace com.horizon.store
         {
             Debug.Log("Number of target items: " + m_TargetItems.Count);
 
-            // hashset stores processed item types
+            // stores processed item types
             HashSet<CollectibleItemType> processedTypes = new HashSet<CollectibleItemType>();
 
             foreach (CollectibleItem targetItem in m_TargetItems)
@@ -54,15 +65,7 @@ namespace com.horizon.store
                 if (!processedTypes.Contains(targetItem.m_itemType))
                 {
                     // Process all instances of the current item type
-                    int totalCount = 0;
-
-                    foreach (CollectibleItem item in m_TargetItems)
-                    {
-                        if (item.m_itemType == targetItem.m_itemType)
-                        {
-                            totalCount++;
-                        }
-                    }
+                    int totalCount = CountItemOccurrences(targetItem);
 
                     if (totalCount > 0)
                     {
@@ -71,10 +74,11 @@ namespace com.horizon.store
                         // Set icon image, item name, and count
                         groceryUI.GetComponentInChildren<Image>().sprite = targetItem.m_itemIcon;
                         groceryUI.GetComponentInChildren<RtlText>().text = targetItem.m_ItemName;
-                        groceryUI.GetComponentInChildren<TextMeshProUGUI>().text = totalCount.ToString();
+                        groceryUI.transform.Find("Total").GetComponent<TextMeshProUGUI>().text = totalCount.ToString();
+                        groceryUI.transform.Find("Count").GetComponent<TextMeshProUGUI>().text = "0";
 
-                        m_InstantiatedGrocery.Add(groceryUI);
-                        m_InitialSpawnPosition.y -= 40.0f;
+                        m_InstantiatedGroceryUI.Add(groceryUI);
+                        m_InitialSpawnPosition.y -= 50.0f;
 
                         // Add the item type to the processed types list
                         processedTypes.Add(targetItem.m_itemType);
@@ -84,13 +88,45 @@ namespace com.horizon.store
         }
 
 
+        private void UpdateUI(CollectibleItem item)
+        {
+            // Find the UI element corresponding to the collected item type
+            foreach (GameObject groceryUI in m_InstantiatedGroceryUI)
+            {
+                if (groceryUI.GetComponentInChildren<Image>().sprite == item.m_itemIcon)
+                {
+                    
+                    TextMeshProUGUI countText = groceryUI.transform.Find("Count").GetComponent<TextMeshProUGUI>();
 
+                    // Get the current count from the UI and subtract 1
+                    int currentCount = int.Parse(countText.text);
+                    currentCount++;
+
+                    // Update the count in the UI
+                    countText.text = currentCount.ToString();
+
+                    // If the count reaches 0, remove the UI element
+                    if (currentCount.ToString() == groceryUI.transform.Find("Total").GetComponent<TextMeshProUGUI>().text)
+                    {
+                        //TODO: do i keep on removing the ui from the list to not manipulate it by mistake later??
+                        m_InstantiatedGroceryUI.Remove(groceryUI);
+                        groceryUI.transform.Find("Total").GetComponent<TextMeshProUGUI>().gameObject.SetActive(false) ;
+                        groceryUI.transform.Find("Count").GetComponent<TextMeshProUGUI>().gameObject.SetActive(false) ;
+                        groceryUI.transform.Find("Slash").GetComponent<TextMeshProUGUI>().gameObject.SetActive(false) ;
+                        groceryUI.transform.Find("Tick").gameObject.SetActive(true) ;
+                        //Destroy(groceryUI);
+                    }
+
+                    break;
+                }
+            }
+        }
         private int CountItemOccurrences(CollectibleItem item)
         {
             int count = 0;
             foreach (CollectibleItem collectedItem in m_TargetItems)
             {
-                if (collectedItem == item)
+                if (collectedItem.m_itemType == item.m_itemType)
                 {
                     count++;
                 }
@@ -98,16 +134,14 @@ namespace com.horizon.store
             return count;
         }
 
-
-
         private void CheckCollectedItems()  
         {
-            if (m_CollectedItems.Count == m_TargetItems.Count)
+            if (m_PickedItems.Count == m_TargetItems.Count)
             {
                 bool allItemsCollected = true;
                 foreach (CollectibleItem targetItem in m_TargetItems)
                 {
-                    if (!m_CollectedItems.Contains(targetItem))
+                    if (!m_PickedItems.Contains(targetItem))
                     {
                         allItemsCollected = false;
                         break;
@@ -117,13 +151,18 @@ namespace com.horizon.store
                 if (allItemsCollected)
                 {
                     Debug.Log("All items collected!");
-                    // Handle when all items are collected
                 }
                 else
                 {
                     Debug.Log("Not all items collected yet.");
                 }
             }
+
         }
     }
 }
+
+
+
+
+

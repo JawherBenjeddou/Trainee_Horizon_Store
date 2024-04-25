@@ -7,7 +7,8 @@ namespace com.horizon.store
     public enum CollectibleItemType
     {
         Apple,
-        Banana
+        Banana,
+        Ananas
     }
 
 
