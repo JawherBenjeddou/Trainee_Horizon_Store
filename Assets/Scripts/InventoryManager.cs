@@ -24,6 +24,8 @@ namespace com.horizon.store
         [SerializeField] private GameObject m_GroceryUIPrefab;
         [SerializeField] private Vector2 m_InitialSpawnPosition;
 
+
+
         void Start()
         {
             m_PickedItems = new List<CollectibleItem>();
