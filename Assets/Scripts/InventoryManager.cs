@@ -3,8 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UPersian.Components;
-using UnityEngine.PlayerLoop;
-
 
 namespace com.horizon.store
 {
@@ -13,6 +11,11 @@ namespace com.horizon.store
         public List<CollectibleItem> m_TargetItems;
 
         private List<CollectibleItem> m_PickedItems;
+
+        [SerializeField] private GameObject m_StarContainer;
+        private Image[] stars;
+        public Sprite m_EmptyStar; 
+        public Sprite m_FilledStar; // Assign in the Inspector or load dynamically
 
 
         private List<GameObject> m_InstantiatedGroceryUI;
@@ -25,7 +28,34 @@ namespace com.horizon.store
         {
             m_PickedItems = new List<CollectibleItem>();
             m_InstantiatedGroceryUI = new List<GameObject>();
+            
+            // Get all the Image components from the prefab children
+            stars = m_StarContainer.GetComponentsInChildren<Image>();
+
+            // Fill all star images with filled stars initially
+            FillStars();
+
             InstantiateGroceryUI();
+        }
+
+        private void FillStars()
+        {
+            foreach (var star in stars)
+            {
+                star.sprite = m_FilledStar;
+            }
+        }
+
+        public void ToggleNextEmptyStar()
+        {
+            for (int i = 0; i < stars.Length; i++)
+            {
+                if (stars[i].sprite == m_FilledStar)
+                {
+                    stars[i].sprite = m_EmptyStar;
+                    return; // Exit the loop after toggling one star
+                }
+            }
         }
 
         public void CollectItem(CollectibleItem item)
@@ -34,7 +64,8 @@ namespace com.horizon.store
             if (!m_TargetItems.Contains(item))
             {
                 Debug.Log("Item '" + item.m_ItemName + "' is not in the target list.");
-                ScreenShake.Instance.Shake();
+                //ScreenShake.Instance.Shake();
+                ToggleNextEmptyStar();
                 return;
             }
 
@@ -46,7 +77,7 @@ namespace com.horizon.store
         }
 
 
-        private void AddToInventory(CollectibleItem itemType)
+        private void AddToInventory(CollectibleItem itemType) 
         {
             m_PickedItems.Add(itemType);
             Debug.Log(itemType.name + " added to inventory.");
