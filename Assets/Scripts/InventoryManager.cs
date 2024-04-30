@@ -1,106 +1,201 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEditor;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using UPersian.Components;
 
 namespace com.horizon.store
 {
-
-    [System.Serializable]
-    public struct ItemPair
-    {
-        public GameObject uiElement;
-        public GameObject itemPrefab;
-    }
-
     public class InventoryManager : MonoBehaviour
     {
-        private Dictionary<CollectibleItemType, int> m_CollectedItems;
-        private Dictionary<CollectibleItemType, int> m_TargetItems;
-        private List<ItemPair> m_UIItemPairs;
-        [SerializeField]
-        private GameObject m_ItemUI; //ItemUI PREFAB.
-        [SerializeField]
-        private Transform m_CanvasForUI;
-        [SerializeField]
-        private Vector2 m_InitialSpawnPosition;
-        [SerializeField]
-        private List<GameObject> m_InGameItems;
+        public List<CollectibleItem> m_TargetItems;
+
+        private List<CollectibleItem> m_PickedItems;
+
+        [SerializeField] private GameObject m_StarContainer;
+        private Image[] stars;
+        public Sprite m_EmptyStar; 
+        public Sprite m_FilledStar; // Assign in the Inspector or load dynamically
+
+
+        private List<GameObject> m_InstantiatedGroceryUI;
+
+        [SerializeField] private Transform m_CanvasForGrocery;
+        [SerializeField] private GameObject m_GroceryUIPrefab;
+        [SerializeField] private Vector2 m_InitialSpawnPosition;
+
+
 
         void Start()
         {
-            m_CollectedItems = new Dictionary<CollectibleItemType, int>();
-            m_TargetItems = new Dictionary<CollectibleItemType, int>();
+            m_PickedItems = new List<CollectibleItem>();
+            m_InstantiatedGroceryUI = new List<GameObject>();
+            
+            // Get all the Image components from the prefab children
+            stars = m_StarContainer.GetComponentsInChildren<Image>();
 
-            InitializeUI();
+            // Fill all star images with filled stars initially
+            FillStars();
+
+            InstantiateGroceryUI();
+        }
+
+        private void FillStars()
+        {
+            foreach (var star in stars)
+            {
+                star.sprite = m_FilledStar;
+            }
+        }
+
+        public void ToggleNextEmptyStar()
+        {
+            for (int i = 0; i < stars.Length; i++)
+            {
+                if (stars[i].sprite == m_FilledStar)
+                {
+                    stars[i].sprite = m_EmptyStar;
+                    return; // Exit the loop after toggling one star
+                }
+            }
         }
 
         public void CollectItem(CollectibleItem item)
         {
-            AddToInventory(item.m_itemType);
-        }
-
-        private void InitializeUI()
-        {
-            m_UIItemPairs = new List<ItemPair>();
-            Vector2 spawnPosition = m_InitialSpawnPosition;
-            foreach (GameObject item in m_InGameItems) //this goes threw each item in the scene to make it's ui
+            // Check if the collected item is not in the target list
+            if (!m_TargetItems.Contains(item))
             {
-                GameObject newItem = Instantiate(m_ItemUI, spawnPosition, Quaternion.identity, m_CanvasForUI);
-                m_UIItemPairs.Add(new ItemPair { uiElement = newItem, itemPrefab = item });
-                // TODO: Check if they both pointing to the same memory or it's making a copy m_UIItemPairs[0] and newItem
-                SetThumbnailOnImage(newItem, item);
-                spawnPosition.y += 50.0f;
-            }
-        }
-
-        private void AddToInventory(CollectibleItemType itemType)
-        {
-            if (m_CollectedItems.ContainsKey(itemType))
-            {
-                m_CollectedItems[itemType]++;
-            }
-            else
-            {
-                m_CollectedItems.Add(itemType, 1);
-            }
-        }
-
-
-        // Method to get the thumbnail sprite of the collectibleObject
-        public Sprite GetThumbnail(GameObject prefab)
-        {
-
-            Texture2D thumbnail = AssetPreview.GetAssetPreview(prefab);
-            if (thumbnail != null)
-            {
-                // Create a sprite from the texture
-                return Sprite.Create(thumbnail, new Rect(0, 0, thumbnail.width, thumbnail.height), Vector2.one * 0.5f);
-            }
-
-            Debug.LogWarning("Thumbnail sprite not found for the collectible object: " + gameObject.name);
-            return null;
-        }
-
-        void SetThumbnailOnImage(GameObject itemUI, GameObject prefab)
-        {
-            if (itemUI == null || prefab == null)
-            {
-                Debug.LogWarning("Item UI or Prefab reference is null!");
+                Debug.Log("Item '" + item.m_ItemName + "' is not in the target list.");
+                //ScreenShake.Instance.Shake();
+                ToggleNextEmptyStar();
                 return;
             }
-                var imageComponent = itemUI.GetComponentInChildren<UnityEngine.UI.Image>();
-                if (imageComponent != null)
+
+            AddToInventory(item);
+            UpdateUI(item);
+
+            // Check if all items are collected
+            CheckCollectedItems();
+        }
+
+
+        private void AddToInventory(CollectibleItem itemType) 
+        {
+            m_PickedItems.Add(itemType);
+            Debug.Log(itemType.name + " added to inventory.");
+        }
+
+        private void InstantiateGroceryUI()
+        {
+            Debug.Log("Number of target items: " + m_TargetItems.Count);
+
+            // stores processed item types
+            HashSet<CollectibleItemType> processedTypes = new HashSet<CollectibleItemType>();
+
+            foreach (CollectibleItem targetItem in m_TargetItems)
+            {
+                // Check if the item type has already been processed
+                if (!processedTypes.Contains(targetItem.m_itemType))
+                {
+                    // Process all instances of the current item type
+                    int totalCount = CountItemOccurrences(targetItem);
+
+                    if (totalCount > 0)
+                    {
+                        GameObject groceryUI = Instantiate(m_GroceryUIPrefab, m_InitialSpawnPosition, Quaternion.identity, m_CanvasForGrocery);
+
+                        // Set icon image, item name, and count
+                        groceryUI.GetComponentInChildren<Image>().sprite = targetItem.m_itemIcon;
+                        groceryUI.GetComponentInChildren<RtlText>().text = targetItem.m_ItemName;
+                        groceryUI.transform.Find("Total").GetComponent<TextMeshProUGUI>().text = totalCount.ToString();
+                        groceryUI.transform.Find("Count").GetComponent<TextMeshProUGUI>().text = "0";
+
+                        m_InstantiatedGroceryUI.Add(groceryUI);
+                        m_InitialSpawnPosition.y -= 50.0f;
+
+                        // Add the item type to the processed types list
+                        processedTypes.Add(targetItem.m_itemType);
+                    }
+                }
+            }
+        }
+
+
+        private void UpdateUI(CollectibleItem item)
+        {
+            // Find the UI element corresponding to the collected item type
+            foreach (GameObject groceryUI in m_InstantiatedGroceryUI)
+            {
+                if (groceryUI.GetComponentInChildren<Image>().sprite == item.m_itemIcon)
                 {
                     
-                    imageComponent.sprite = GetThumbnail(prefab);
+                    TextMeshProUGUI countText = groceryUI.transform.Find("Count").GetComponent<TextMeshProUGUI>();
+
+                    // Get the current count from the UI and subtract 1
+                    int currentCount = int.Parse(countText.text);
+                    currentCount++;
+
+                    // Update the count in the UI
+                    countText.text = currentCount.ToString();
+
+                    // If the count reaches 0, remove the UI element
+                    if (currentCount.ToString() == groceryUI.transform.Find("Total").GetComponent<TextMeshProUGUI>().text)
+                    {
+                        //TODO: do i keep on removing the ui from the list to not manipulate it by mistake later??
+                        m_InstantiatedGroceryUI.Remove(groceryUI);
+                        groceryUI.transform.Find("Total").GetComponent<TextMeshProUGUI>().gameObject.SetActive(false) ;
+                        groceryUI.transform.Find("Count").GetComponent<TextMeshProUGUI>().gameObject.SetActive(false) ;
+                        groceryUI.transform.Find("Slash").GetComponent<TextMeshProUGUI>().gameObject.SetActive(false) ;
+                        groceryUI.transform.Find("Tick").gameObject.SetActive(true) ;
+                        //Destroy(groceryUI);
+                    }
+
+                    break;
+                }
+            }
+        }
+        private int CountItemOccurrences(CollectibleItem item)
+        {
+            int count = 0;
+            foreach (CollectibleItem collectedItem in m_TargetItems)
+            {
+                if (collectedItem.m_itemType == item.m_itemType)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        private void CheckCollectedItems()  
+        {
+            if (m_PickedItems.Count == m_TargetItems.Count)
+            {
+                bool allItemsCollected = true;
+                foreach (CollectibleItem targetItem in m_TargetItems)
+                {
+                    if (!m_PickedItems.Contains(targetItem))
+                    {
+                        allItemsCollected = false;
+                        break;
+                    }
+                }
+
+                if (allItemsCollected)
+                {
+                    Debug.Log("All items collected!");
                 }
                 else
                 {
-                    Debug.LogWarning("Image component not found in item UI!");
+                    Debug.Log("Not all items collected yet.");
                 }
             }
+
         }
+    }
 }
+
+
+
+
+

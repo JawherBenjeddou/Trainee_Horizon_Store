@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-
-
+using UnityEngine.UI;
 
 namespace com.horizon.store
 {
@@ -11,7 +7,8 @@ namespace com.horizon.store
     public enum CollectibleItemType
     {
         Apple,
-        Banana
+        Banana,
+        Ananas
     }
 
 
