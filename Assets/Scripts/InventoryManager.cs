@@ -3,12 +3,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UPersian.Components;
+using UnityEngine.AI;
 
 namespace com.horizon.store
 {
     public class InventoryManager : MonoBehaviour
     {
         public List<CollectibleItem> m_TargetItems;
+
+        public GameObject m_CashierPointer;
+
 
         private List<CollectibleItem> m_PickedItems;
 
@@ -184,6 +188,7 @@ namespace com.horizon.store
                 if (allItemsCollected)
                 {
                     Debug.Log("All items collected!");
+                    m_CashierPointer.gameObject.SetActive(true);
                 }
                 else
                 {
