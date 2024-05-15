@@ -54,6 +54,7 @@ namespace com.horizon.store
             // Check if the animation has ended
             if (IsAnimationFinished("Cashier_FlatSceen_Inputs_OneHandType"))
             {
+                
                 m_GroceryUI.gameObject.SetActive(false);
                 m_Stars.gameObject.SetActive(false);
                 m_MovementUI.gameObject.SetActive(false);

@@ -246,7 +246,8 @@ public class MoneyHandler : MonoBehaviour
         if (PlayerReturnedMoneyValue()== MoneyToReturn)
         {
             Debug.Log("CorrectReturnedMoney");
-            m_GOM.Game_Over(true, 3);
+            //m_GOM.Game_Over(true, 3);
+            //GameManager.instance.RestartScene();
         }
         else
         {
