@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Trainee_Horizon_FeridSpaceShip_Mouvement : MonoBehaviour
 {
-
+    public BoxCollider m_LeaveStore;
     private CharacterController _characterController;
     //private Trainee_Horizon_FeridSpaceShip_SoundManager _soundsMan;
     private Game_Over_2_AudioManager _audioManager;
@@ -138,7 +138,13 @@ public class Trainee_Horizon_FeridSpaceShip_Mouvement : MonoBehaviour
             _footStepTimer = _getCurrentOffset;
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other == m_LeaveStore)
+        {
+            GameManager.instance.RestartScene();
+        }
+    }
 
 
 

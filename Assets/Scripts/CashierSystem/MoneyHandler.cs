@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using com.horizon.store;
 public class MoneyHandler : MonoBehaviour
 {
+    public GameObject m_CashierPointer;
+    public CashierController m_CashierController;
     public Game_Over_2_GameInteraction m_GOM;
     [SerializeField] private int StartRange;
     [SerializeField] private int EndRange;
@@ -246,6 +248,8 @@ public class MoneyHandler : MonoBehaviour
         if (PlayerReturnedMoneyValue()== MoneyToReturn)
         {
             Debug.Log("CorrectReturnedMoney");
+            m_CashierController.SwitchCameras();
+            m_CashierPointer.gameObject.SetActive(false);
             //m_GOM.Game_Over(true, 3);
             //GameManager.instance.RestartScene();
         }

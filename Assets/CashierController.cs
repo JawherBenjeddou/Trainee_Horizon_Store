@@ -16,15 +16,13 @@ namespace com.horizon.store
         public GameObject m_MovementUI;
         public GameObject m_GroceryUI;
 
+        private bool m_CameraSwitched = false;
 
-
-        // Start is called before the first frame update
         void Start()
         {
             m_Animator = GetComponent<Animator>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (m_Collider.bounds.Intersects(m_Player.GetComponent<CharacterController>().bounds))
@@ -50,19 +48,20 @@ namespace com.horizon.store
                 m_Animator.SetBool("IsPaying", false);
                 m_ChatBubbleFX.DisableChat();
                 m_AnimationTriggered = false;
+                m_CameraSwitched = false; // Reset the camera switch flag
             }
-            // Check if the animation has ended
-            if (IsAnimationFinished("Cashier_FlatSceen_Inputs_OneHandType"))
+
+            // Check if the animation has ended and the camera has not been switched yet
+            if (IsAnimationFinished("Cashier_FlatSceen_Inputs_OneHandType") && !m_CameraSwitched)
             {
-                
                 m_GroceryUI.gameObject.SetActive(false);
                 m_Stars.gameObject.SetActive(false);
                 m_MovementUI.gameObject.SetActive(false);
                 SwitchCameras();
-
+                m_CameraSwitched = true; // Set the flag to true to indicate that the camera has been switched
             }
-
         }
+
         public void IsPaying()
         {
             m_Animator.SetBool("IsPaying", true);
@@ -88,13 +87,31 @@ namespace com.horizon.store
             return false;
         }
         // Function to switch between cameras
-        private void SwitchCameras()
+        //public void SwitchCameras()
+        //{
+        //    // Disable the main camera
+        //    m_MainCamera.gameObject.SetActive(false);
+        //    m_ChatBubbleFX.DisableChat();
+        //    // Enable the second camera
+        //    m_SecondCamera.gameObject.SetActive(true);
+        //}
+        public void SwitchCameras()
         {
-            // Disable the main camera
-            m_MainCamera.gameObject.SetActive(false);
+            if (m_MainCamera.gameObject.activeSelf)
+            {
+                // Main camera is currently active, switch to the second camera
+                m_MainCamera.gameObject.SetActive(false);
+                m_SecondCamera.gameObject.SetActive(true);
+            }
+            else if (m_SecondCamera.gameObject.activeSelf)
+            {
+                // Second camera is currently active, switch to the main camera
+                m_SecondCamera.gameObject.SetActive(false);
+                m_MainCamera.gameObject.SetActive(true);
+            }
+
+            // Disable the chat bubble effect regardless of the camera switch
             m_ChatBubbleFX.DisableChat();
-            // Enable the second camera
-            m_SecondCamera.gameObject.SetActive(true);
         }
     }
 }
