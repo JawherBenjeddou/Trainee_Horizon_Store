@@ -1,8 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UPersian.Components;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class GameManager : MonoBehaviour
     public Image m_DarkImage;
     public GameObject m_moveButton;
     public float fadeDuration = 100.0f; // Increased duration of the fade effect
-    public RtlText m_DayCount;
+
     private void Awake()
     {
         // Singleton pattern
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
         StartNewDay();
     }
 
@@ -41,17 +39,14 @@ public class GameManager : MonoBehaviour
 
         // Increment the day counter
         currentDay++;
-        m_DayCount.text = "اليوم "+currentDay.ToString();
         // Start the fade-out effect
         m_moveButton.SetActive(false); // Ensure the move button is inactive at the start
         StartCoroutine(FadeOutDarkImage());
-
     }
 
     private IEnumerator FadeOutDarkImage()
     {
         Color color = m_DarkImage.color;
-        Color defaultcolor = m_DarkImage.color;
         float startAlpha = color.a;
         float rate = fadeDuration;
         float progress = 0.0f;
@@ -67,14 +62,10 @@ public class GameManager : MonoBehaviour
         color.a = 0;
         m_DarkImage.color = color;
         m_moveButton.SetActive(true); // Activate the move button after the fade-out
-        m_DarkImage.gameObject.SetActive(false);
-        m_DarkImage.color = defaultcolor;
-        m_DayCount.text ="";
     }
 
     public void RestartScene()
     {
-        m_DarkImage.gameObject.SetActive(true);
         // Restart the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         StartNewDay();
