@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UPersian.Components;
-using UnityEngine.AI;
 
 namespace com.horizon.store
 {
@@ -27,7 +26,6 @@ namespace com.horizon.store
         [SerializeField] private Transform m_CanvasForGrocery;
         [SerializeField] private GameObject m_GroceryUIPrefab;
         [SerializeField] private Vector2 m_InitialSpawnPosition;
-
 
 
         void Start()
@@ -83,7 +81,6 @@ namespace com.horizon.store
             CheckCollectedItems();
         }
 
-
         private void AddToInventory(CollectibleItem itemType) 
         {
             m_PickedItems.Add(itemType);
@@ -124,8 +121,7 @@ namespace com.horizon.store
                 }
             }
         }
-
-
+        
         private void UpdateUI(CollectibleItem item)
         {
             // Find the UI element corresponding to the collected item type
@@ -159,6 +155,7 @@ namespace com.horizon.store
                 }
             }
         }
+
         private int CountItemOccurrences(CollectibleItem item)
         {
             int count = 0;
@@ -200,8 +197,3 @@ namespace com.horizon.store
         }
     }
 }
-
-
-
-
-
