@@ -13,7 +13,7 @@ namespace com.horizon.store
 
         public GameObject m_CashierPointer;
 
-
+   
         private List<CollectibleItem> m_PickedItems;
 
         [SerializeField] private GameObject m_StarContainer;
@@ -42,6 +42,7 @@ namespace com.horizon.store
             FillStars();
 
             InstantiateGroceryUI();
+  
         }
 
         private void FillStars()

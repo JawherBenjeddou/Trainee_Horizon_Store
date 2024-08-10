@@ -21,6 +21,7 @@ namespace com.horizon.store
         void Start()
         {
             m_Animator = GetComponent<Animator>();
+            m_MovementUI = GameObject.Find("MoveButtons");
         }
 
         void Update()
