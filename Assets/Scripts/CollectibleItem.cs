@@ -8,7 +8,8 @@ namespace com.horizon.store
     {
         Apple,
         Banana,
-        Ananas
+        Ananas,
+        Milk
     }
 
 

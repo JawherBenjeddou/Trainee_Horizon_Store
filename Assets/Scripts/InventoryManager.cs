@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UPersian.Components;
+using System.Collections;
 
 namespace com.horizon.store
 {
@@ -10,6 +11,9 @@ namespace com.horizon.store
     {
         public List<CollectibleItem> m_TargetItems;
 
+        public GameObject m_CashierPointer;
+
+   
         private List<CollectibleItem> m_PickedItems;
 
         [SerializeField] private GameObject m_StarContainer;
@@ -17,6 +21,8 @@ namespace com.horizon.store
         public Sprite m_EmptyStar; 
         public Sprite m_FilledStar; // Assign in the Inspector or load dynamically
 
+        public Animation m_ahsantAnimation;
+        public GameObject m_animationGameObject;
 
         private List<GameObject> m_InstantiatedGroceryUI;
 
@@ -24,10 +30,16 @@ namespace com.horizon.store
         [SerializeField] private GameObject m_GroceryUIPrefab;
         [SerializeField] private Vector2 m_InitialSpawnPosition;
 
-
+        public GameObject m_InteractionCollider;
+        public BoxCollider m_boxCollider;
 
         void Start()
         {
+            m_InteractionCollider = GameObject.Find("InteractionPosition");
+            m_boxCollider = m_InteractionCollider.GetComponentInChildren<BoxCollider>();
+            m_boxCollider.enabled = false;    
+            m_animationGameObject = GameObject.Find("GoodUI");
+            m_animationGameObject.SetActive(false);
             m_PickedItems = new List<CollectibleItem>();
             m_InstantiatedGroceryUI = new List<GameObject>();
             
@@ -38,8 +50,13 @@ namespace com.horizon.store
             FillStars();
 
             InstantiateGroceryUI();
+  
         }
 
+        private void Update()
+        {
+
+        }
         private void FillStars()
         {
             foreach (var star in stars)
@@ -77,7 +94,6 @@ namespace com.horizon.store
             // Check if all items are collected
             CheckCollectedItems();
         }
-
 
         private void AddToInventory(CollectibleItem itemType) 
         {
@@ -119,8 +135,7 @@ namespace com.horizon.store
                 }
             }
         }
-
-
+        
         private void UpdateUI(CollectibleItem item)
         {
             // Find the UI element corresponding to the collected item type
@@ -154,6 +169,7 @@ namespace com.horizon.store
                 }
             }
         }
+
         private int CountItemOccurrences(CollectibleItem item)
         {
             int count = 0;
@@ -184,6 +200,11 @@ namespace com.horizon.store
                 if (allItemsCollected)
                 {
                     Debug.Log("All items collected!");
+                    m_boxCollider.enabled = true; 
+                    m_animationGameObject.SetActive(true);  
+                    m_ahsantAnimation.Play();
+                    StartCoroutine(DeactivateAnimationObjectAfterDelay(1.4f));
+                    m_CashierPointer.gameObject.SetActive(true);
                 }
                 else
                 {
@@ -192,10 +213,11 @@ namespace com.horizon.store
             }
 
         }
+        private IEnumerator DeactivateAnimationObjectAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            m_animationGameObject.SetActive(false);
+        }
+
     }
 }
-
-
-
-
-

@@ -99,8 +99,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 3923
-      y: 796
+      x: 3222
+      y: 1879
       width: 90
       height: 37
     spriteID: 2fa5aac18efb5e14b8c809ababdcb5ef
@@ -113,7 +113,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 2554, y: 406}
+    uvTransform: {x: 1853, y: 1489}
   - name: "\u0625\u0631\u062C\u0627\u0639"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -121,8 +121,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 3923
-      y: 739
+      x: 3222
+      y: 1822
       width: 143
       height: 49
     spriteID: 29ca4da498916ad4e8a0c89f780e027d
@@ -135,7 +135,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 2029, y: 337}
+    uvTransform: {x: 1328, y: 1420}
   - name: ResetMoney
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -143,8 +143,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 3682
-      y: 739
+      x: 3098
+      y: 1822
       width: 116
       height: 97
     spriteID: e4f01c8b16279ef4aa5e70b76912a330
@@ -157,7 +157,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 2880, y: 483}
+    uvTransform: {x: 1755, y: 1414}
   - name: Clear
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -165,8 +165,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1011
-      y: 1092
+      x: 2412
+      y: 1750
       width: 458
       height: 260
     spriteID: dea9680058ca3ac4192d37c5c12aeea1
@@ -179,7 +179,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -129, y: 1007}
+    uvTransform: {x: 2369, y: 1694}
   - name: GiveButton
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -187,8 +187,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1477
-      y: 1092
+      x: 2925
+      y: 1554
       width: 458
       height: 260
     spriteID: 8b6457ed54ec5d142b26a66469cdf56e
@@ -201,7 +201,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -343, y: 1007}
+    uvTransform: {x: 2362, y: 1498}
   - name: CashDrawerTop
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -209,8 +209,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 2412
-      y: 739
+      x: 4
+      y: 1092
       width: 1262
       height: 124
     spriteID: c936e39011290054dbde125836dff88b
@@ -223,29 +223,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1318, y: -217}
-  - name: CashDrawer
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 2412
-      y: 4
-      width: 1357
-      height: 727
-    spriteID: 6e3cd3d220d9b3f46b4404032804a451
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 1369, y: -349}
+    uvTransform: {x: -1090, y: 136}
   - name: GiveHand
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -253,8 +231,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 3806
-      y: 739
+      x: 3098
+      y: 1927
       width: 109
       height: 102
     spriteID: e3ea62d2efb1c944384c962ca1afac6e
@@ -267,7 +245,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 2997, y: 313}
+    uvTransform: {x: 1684, y: 1377}
   - name: ":\u0627\u0644\u0628\u0627\u0642\u064A box"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -275,8 +253,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 2412
-      y: 871
+      x: 3419
+      y: 991
       width: 488
       height: 183
     spriteID: 876f18ff9ed059f4e839e67338b828aa
@@ -289,7 +267,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1874, y: 75}
+    uvTransform: {x: 2881, y: 94}
   - name: MoneyDropBox
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -297,10 +275,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 517
-      y: 1092
+      x: 2925
+      y: 991
       width: 486
-      height: 698
+      height: 558
     spriteID: 1d05c327b3f93b94b997cf543dcc6796
     internalID: 0
     spriteBone: []
@@ -311,7 +289,51 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -23, y: 1007}
+    uvTransform: {x: 2385, y: 662}
+  - name: ResetMoney_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2925
+      y: 1822
+      width: 165
+      height: 222
+    spriteID: 326637f1927b6c3408281e19c24fbc1a
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2064, y: 1721}
+  - name: CashDrawer
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2412
+      y: 4
+      width: 1357
+      height: 979
+    spriteID: f214fad53ef0b544c9f6806824e1a307
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1369, y: -97}
   - name: MoneyCalcBox
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -319,11 +341,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 1092
+      x: 2412
+      y: 991
       width: 505
-      height: 892
-    spriteID: 3f041d978acc9d745b068d3304a5ae7b
+      height: 751
+    spriteID: a10e44f20a2fcfb4297301d261009703
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -333,29 +355,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -12, y: 1005}
-  - name: Layer 12
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4074
-      y: 739
-      width: 0
-      height: 0
-    spriteID: 3da05516d71107147869139baafca4b1
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 1674, y: -341}
+    uvTransform: {x: 2396, y: 662}
   - name: DropSlotInterface
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -367,7 +367,7 @@ ScriptedImporter:
       y: 4
       width: 2400
       height: 1080
-    spriteID: f4736039539515541af5febca1470c71
+    spriteID: 265c9227692759847b4133d10404e056
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -397,96 +397,96 @@ ScriptedImporter:
   characterMode: 1
   mosaicPSDLayers: []
   rigPSDLayers:
+  - name: ResetMoney
+    spriteName: ResetMoney_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 326637f1927b6c3408281e19c24fbc1a
+    layerID: 63
+    mosaicPosition: {x: 2925, y: 1822}
   - name: "\u0645\u0633\u062D"
     spriteName: "\u0645\u0633\u062D"
     isGroup: 0
     parentIndex: -1
     spriteID: 2fa5aac18efb5e14b8c809ababdcb5ef
     layerID: 14
-    mosaicPosition: {x: 3923, y: 796}
+    mosaicPosition: {x: 3222, y: 1879}
   - name: "\u0625\u0631\u062C\u0627\u0639"
     spriteName: "\u0625\u0631\u062C\u0627\u0639"
     isGroup: 0
     parentIndex: -1
     spriteID: 29ca4da498916ad4e8a0c89f780e027d
     layerID: 13
-    mosaicPosition: {x: 3923, y: 739}
+    mosaicPosition: {x: 3222, y: 1822}
   - name: ResetMoney
     spriteName: ResetMoney
     isGroup: 0
     parentIndex: -1
     spriteID: e4f01c8b16279ef4aa5e70b76912a330
     layerID: 47
-    mosaicPosition: {x: 3682, y: 739}
+    mosaicPosition: {x: 3098, y: 1822}
   - name: Clear
     spriteName: Clear
     isGroup: 0
     parentIndex: -1
     spriteID: dea9680058ca3ac4192d37c5c12aeea1
     layerID: 11
-    mosaicPosition: {x: 1011, y: 1092}
+    mosaicPosition: {x: 2412, y: 1750}
   - name: GiveButton
     spriteName: GiveButton
     isGroup: 0
     parentIndex: -1
     spriteID: 8b6457ed54ec5d142b26a66469cdf56e
     layerID: 10
-    mosaicPosition: {x: 1477, y: 1092}
+    mosaicPosition: {x: 2925, y: 1554}
   - name: CashDrawerTop
     spriteName: CashDrawerTop
     isGroup: 0
     parentIndex: -1
     spriteID: c936e39011290054dbde125836dff88b
     layerID: 8
-    mosaicPosition: {x: 2412, y: 739}
-  - name: CashDrawer
-    spriteName: CashDrawer
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 6e3cd3d220d9b3f46b4404032804a451
-    layerID: 7
-    mosaicPosition: {x: 2412, y: 4}
+    mosaicPosition: {x: 4, y: 1092}
   - name: GiveHand
     spriteName: GiveHand
     isGroup: 0
     parentIndex: -1
     spriteID: e3ea62d2efb1c944384c962ca1afac6e
     layerID: 46
-    mosaicPosition: {x: 3806, y: 739}
+    mosaicPosition: {x: 3098, y: 1927}
+  - name: CashDrawer
+    spriteName: CashDrawer
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f214fad53ef0b544c9f6806824e1a307
+    layerID: 56
+    mosaicPosition: {x: 2412, y: 4}
   - name: ":\u0627\u0644\u0628\u0627\u0642\u064A box"
     spriteName: ":\u0627\u0644\u0628\u0627\u0642\u064A box"
     isGroup: 0
     parentIndex: -1
     spriteID: 876f18ff9ed059f4e839e67338b828aa
     layerID: 44
-    mosaicPosition: {x: 2412, y: 871}
+    mosaicPosition: {x: 3419, y: 991}
   - name: MoneyDropBox
     spriteName: MoneyDropBox
     isGroup: 0
     parentIndex: -1
     spriteID: 1d05c327b3f93b94b997cf543dcc6796
     layerID: 36
-    mosaicPosition: {x: 517, y: 1092}
+    mosaicPosition: {x: 2925, y: 991}
   - name: MoneyCalcBox
     spriteName: MoneyCalcBox
     isGroup: 0
     parentIndex: -1
-    spriteID: 3f041d978acc9d745b068d3304a5ae7b
-    layerID: 41
-    mosaicPosition: {x: 4, y: 1092}
-  - name: Layer 12
-    spriteName: Layer 12
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 3da05516d71107147869139baafca4b1
-    layerID: 28
-    mosaicPosition: {x: 4074, y: 739}
+    spriteID: a10e44f20a2fcfb4297301d261009703
+    layerID: 49
+    mosaicPosition: {x: 2412, y: 991}
   - name: DropSlotInterface
     spriteName: DropSlotInterface
     isGroup: 0
     parentIndex: -1
-    spriteID: f4736039539515541af5febca1470c71
-    layerID: 9
+    spriteID: 265c9227692759847b4133d10404e056
+    layerID: 57
     mosaicPosition: {x: 4, y: 4}
   characterData:
     bones: []

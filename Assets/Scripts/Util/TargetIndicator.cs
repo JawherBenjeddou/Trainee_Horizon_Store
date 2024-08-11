@@ -6,7 +6,10 @@ namespace com.horizon.store
 {
     public class TargetIndicator : MonoBehaviour
     {
+        [Header("Set Target items here")]
+        [Space(5)]
         public List<Transform> m_Targets; // List of targets
+
         [SerializeField]
         private float m_RotationSpeed;
 
