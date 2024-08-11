@@ -26,9 +26,11 @@ namespace com.horizon.store
 
         void Update()
         {
+
             if (m_Collider.bounds.Intersects(m_Player.GetComponent<CharacterController>().bounds))
             {
                 // Check if the animation has not been triggered yet
+
                 if (!m_AnimationTriggered)
                 {
                     m_Animator.SetBool("InRange", true);

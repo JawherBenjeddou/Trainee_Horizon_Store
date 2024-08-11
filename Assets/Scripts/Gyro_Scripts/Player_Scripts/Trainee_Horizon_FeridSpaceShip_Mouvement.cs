@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Trainee_Horizon_FeridSpaceShip_Mouvement : MonoBehaviour
 {
@@ -13,7 +10,7 @@ public class Trainee_Horizon_FeridSpaceShip_Mouvement : MonoBehaviour
     private Camera _cam;
     public CharacterController playerController;
     public float moveSpeed = 10f;
-
+    public Game_Over_2_GameInteraction m_GameInteraction;
     [Header("Mouvemnt Parameters")]
     [SerializeField] private float _walkSpeed = 3.0f;
     private Vector3 _moveDirection;
@@ -142,10 +139,14 @@ public class Trainee_Horizon_FeridSpaceShip_Mouvement : MonoBehaviour
     {
         if (other == m_LeaveStore)
         {
-            GameManager.instance.RestartScene();
+            //if (SceneManager.GetActiveScene().buildIndex == 9)
+            //{
+            //    GameManager.instance.RestartScene();
+            //}
+            //else
+            //{
+            m_GameInteraction.Game_Over(true);
+            //}
         }
     }
-
-
-
 }
