@@ -1,8 +1,5 @@
 using UnityEngine;
 
-
-
-
 namespace com.horizon.store
 {
     public class CollectibleObject : MonoBehaviour

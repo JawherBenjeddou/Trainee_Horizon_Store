@@ -2,54 +2,56 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Trainee_Horizon_FeridSpaceShip_InputManager : MonoBehaviour
+namespace com.horizon.store
 {
-    [Header("Inputs")]
-    private float _horizontalInput;
-    private float _verticalInput;
-
-    [Header("Mouse Input")]
-    private float _MouseY;
-    private float _MouseX;
-
-    [Header("Scripts Parameters")]
-    private Trainee_Horizon_FeridSpaceShip_Mouvement _movement;
-   // private Trainee_Horizon_FeridSpaceShip_PlayerInteraction _interactionRay;
-    private Trainee_Horizon_FeridSpaceShip_MouseLook _mouseLook;
-
-
-    [SerializeField] private Game_Over_2_SpaceShipOptionPanel _spaceShipOptionPanel;
-
-
-    void Start()
+    public class Trainee_Horizon_FeridSpaceShip_InputManager : MonoBehaviour
     {
-        _movement = GetComponent<Trainee_Horizon_FeridSpaceShip_Mouvement>();
-        _mouseLook = GetComponent<Trainee_Horizon_FeridSpaceShip_MouseLook>();
-        //_interactionRay = GetComponent<Trainee_Horizon_FeridSpaceShip_PlayerInteraction>();
+        [Header("Inputs")]
+        private float _horizontalInput;
+        private float _verticalInput;
 
-    }
+        [Header("Mouse Input")]
+        private float _MouseY;
+        private float _MouseX;
 
-    void FixedUpdate()
-    {
+        [Header("Scripts Parameters")]
+        private Trainee_Horizon_FeridSpaceShip_Mouvement _movement;
+        // private Trainee_Horizon_FeridSpaceShip_PlayerInteraction _interactionRay;
+        private Trainee_Horizon_FeridSpaceShip_MouseLook _mouseLook;
+
+
+        [SerializeField] private Game_Over_2_SpaceShipOptionPanel _spaceShipOptionPanel;
+
+
+        void Start()
+        {
+            _movement = GetComponent<Trainee_Horizon_FeridSpaceShip_Mouvement>();
+            _mouseLook = GetComponent<Trainee_Horizon_FeridSpaceShip_MouseLook>();
+            //_interactionRay = GetComponent<Trainee_Horizon_FeridSpaceShip_PlayerInteraction>();
+
+        }
+
+        void FixedUpdate()
+        {
 
 #if UNITY_EDITOR
 
-        _horizontalInput = Input.GetAxis("Horizontal");
-        _verticalInput = Input.GetAxis("Vertical");
+            _horizontalInput = Input.GetAxis("Horizontal");
+            _verticalInput = Input.GetAxis("Vertical");
 
-        _MouseX = Input.GetAxis("Mouse X");
-        _MouseY = Input.GetAxis("Mouse Y");
-        Vector2 currentInput = new Vector2(_verticalInput, _horizontalInput);
-        Vector2 LookInput = new Vector3(_MouseX, _MouseY);
+            _MouseX = Input.GetAxis("Mouse X");
+            _MouseY = Input.GetAxis("Mouse Y");
+            Vector2 currentInput = new Vector2(_verticalInput, _horizontalInput);
+            Vector2 LookInput = new Vector3(_MouseX, _MouseY);
 
 
-        _movement.HandleMouvement(currentInput);
-        if (!_spaceShipOptionPanel.gyroOff)
-        {
-            _mouseLook.HandleGyro();
-        }
-        _mouseLook.HandleMouseLook(LookInput);
-        //_interactionRay.InteractionRay();
+            _movement.HandleMouvement(currentInput);
+            if (!_spaceShipOptionPanel.gyroOff)
+            {
+                _mouseLook.HandleGyro();
+            }
+            _mouseLook.HandleMouseLook(LookInput);
+            //_interactionRay.InteractionRay();
 
 
 #else
@@ -90,6 +92,6 @@ public class Trainee_Horizon_FeridSpaceShip_InputManager : MonoBehaviour
 #endif
 
 
+        }
     }
 }
-

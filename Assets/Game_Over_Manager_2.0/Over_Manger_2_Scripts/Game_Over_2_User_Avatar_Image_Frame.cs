@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UPersian.Components;
-using UnityEngine.Experimental.U2D.Animation;
+
 
 public class Game_Over_2_User_Avatar_Image_Frame : MonoBehaviour
 {
     public Image avatarBGImg;
-    public SpriteResolver headSpriteResolver;
+    public UnityEngine.U2D.Animation.SpriteResolver headSpriteResolver;
 
     [SerializeField] private SpriteRenderer _headRenderer;
     [SerializeField] private Image _headImage;

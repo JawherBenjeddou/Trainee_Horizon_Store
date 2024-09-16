@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.U2D.Animation;
+
 
 public class Game_Over_2_Ferid : MonoBehaviour
 {
-    public SpriteResolver upperAccessory;
-    public SpriteResolver downAccessory;
+    public UnityEngine.U2D.Animation.SpriteResolver upperAccessory;
+    public UnityEngine.U2D.Animation.SpriteResolver downAccessory;
     public Animator myAnim;
 
     public AudioSource myAudioSource;
